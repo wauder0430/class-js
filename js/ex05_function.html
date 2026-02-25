@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        
+    </style>
+</head>
+<body>
+    <!-- ex05_function.html -->
+    <h1></h1>
+    
+    <script>
+        /* 
+            *** JavaScript에는 자료형이 있다.
+            *** JavaScript는 자료형을 명시적으로 코드에 작성할 수 없다.
+            자료형을 코드에 표현할 수 있다.
+            - number, string, boolean, object > 키워드 (X)
+        */
+
+        /* 
+            Java Method
+            public [static] int m1(int num) {
+                return 10;
+            }
+
+            JavaScript Function
+            function m1(num) {
+                return 10;
+            }
+        */
+
+        // 전역 공간(Global Area)
+
+        function m1() {
+            // 지역 공간(Local)
+            console.log('m1');
+        }
+        m1();
+        console.clear();
+
+        function m2(name) {
+            console.log('name', name);
+
+            // 내장 배열 > 자바스크립트가 스스로 만들어서 관리하는 배열
+            // arguments
+            // - 함수를 선언하면 자동으로 생성되는 내장 배열
+            console.log(arguments.length);
+            console.log(arguments[0]);
+            console.log(arguments[1]);
+            console.log(arguments[2]);
+            console.log('----------');
+        }
+        m2('홍길동');
+        m2();
+        m2('강아지', '고양이', '병아리');// 권장 안함 정석대로 사용
+        console.clear();
+
+        function m3() {
+            return 100;
+        }
+
+        var result = m3();
+        console.log('result', result);
+
+    </script>
+</body>
+</html>
