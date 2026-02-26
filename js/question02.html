@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        
+        #hide-txt {
+            border: 0px solid black;
+            color:red;
+            visibility: hidden;
+        }
+    </style>
+</head>
+<body>
+    <!-- question02.html -->
+    <h1>회원가입</h1>
+    
+    <form name="form1">
+        <div>아이디 : 
+            <input type="text" name="txt1"><br>
+            <input id="hide-txt" type="text" name="txt2" value="아이디가 너무 짧습니다.">
+        </div>
+    </form>
+
+    <script>
+        var txt1 = window.document.form1.txt1;
+        var txt2 = window.document.form1.txt2;
+
+        txt1.onkeyup = m1;
+
+        function m1(){
+            if(txt1.value.length>=1){
+                txt2.style.visibility='visible';
+            } else {
+                txt2.style.visibility='hidden';
+            }
+            if(txt1.value.length<=3){
+                txt2.value='아이디가 너무 짧습니다.';
+            } else if(txt1.value.length>=13){
+                txt2.value='아이디가 너무 깁니다.';
+            } else {
+                txt2.value='아이디가 적합합니다.'
+            }
+        }
+        
+    </script>
+</body>
+</html>

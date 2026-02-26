@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        
+    </style>
+</head>
+<body>
+    <!-- ex06_scope.html -->
+    <h1>영역</h1>
+    
+    <script>
+        /* 
+        변수의 영역
+
+        자바
+        1. 멤버 변수 >
+        2. 지역 변수 > 메서드 or 제어문
+
+        자바스크립트
+        1. 전역 변수(Global Variable)
+            - 현재 페이지(HTML)
+        2. 지역 변수(Local Variable)
+            - 함수내에서
+
+        자바의 변수 > 블럭 스코프(Block-scoped) 변수
+        - 클래스, 메서드, 제어문 > 모든 블럭을 자신의 영역 인식
+
+        자바스크립트의 변수 > 함수 스코프(Function-scoped) 변수
+        - 함수의 블럭만을 영역으로 인식
+        - 제어문은 인식 못함
+       
+        */ 
+
+        // 전역 영역
+        var a = 10; // 전역 변수
+        console.log('a', a);
+
+        function m1() {
+            var b = 20; // 지역 변수(m1 영역)
+            console.log('b', b);
+
+            console.log('a', a);
+
+            if(a>0) {
+
+                var c = 30; // 지역 변수(if 영역)
+                console.log('c', c);
+            }
+            console.log('c', c); // 자바와 차이점
+        }
+        m1();
+
+        // console.log('b', b);
+        console.clear();
+
+        var d = 40;
+
+        if(a>0) {
+            var e = 50; // 전역 변수
+        }
+
+        console.log('e', e);
+
+        var f = 50; // 전역 변수
+        g = 60;     // 전역 변수 > 비추천(가독성 문제) 
+
+        function m2() {
+            var h = 70; // 지역 변수(m2)
+            i = 80;     // 지역 변수X > 전역 변수O
+        }
+
+
+    </script>
+</body>
+</html>

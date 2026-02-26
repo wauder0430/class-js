@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        textarea, input {
+            display: block;
+            margin-bottom: 10px;
+        }
+        textarea {
+            width: 500px;
+            height: 300px;
+            outline: none;
+            resize:none;
+            font-size:2rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- ex13_mouse.html -->
+    <h1>이벤트 <small>마우스</small></h1>
+    
+    <form action="" name="form1">
+        <textarea name="txt1" id=""></textarea>
+        <input type="button" value="버튼" name="btn1">
+        <input type="text" name="txt10" size="10">
+    </form>
+
+    <script>
+        /* 
+            마우스 관련 이벤트
+            -onmouseXXX
+
+            1. onmouseover/onmouseenter
+                - 해당 객체의 영역내에 마우스 커서가 진입하는 순간 발생
+
+            2. onmouseout/onmouseleave
+                - 해당 객체의 영역내에 마우스 커서가 빠져나가는 순간 발생
+
+            3. onmousedown
+                - 해당 객체의 영역내에서 마우스 버튼을 눌렀을 때 발생
+
+            4. onmouseup
+                - 해당 객체의 영역내에서 마우스 버튼을 뗐을 때 발생
+
+            5. onmousemove
+                - 해당 객체의 영역내에서 마우스가 움직일 때 발생
+
+            6. onmousewheel
+                - 해당 객체의 영역내에서 휠을 움직일 때 발생
+        */
+
+        var txt1 = window.document.form1.txt1;
+        var btn1 = window.document.form1.btn1;
+
+        // txt1.onmouseover = m1;
+        // txt1.onmouseout = m2;
+        // txt1.onmousedown = m3_1;
+        // txt1.onmouseup = m4;
+        // txt1.onmousemove = m5;
+        txt1.onmousewheel = m6;
+
+        function m1() {
+            window.document.body.bgColor = 'gold';
+            message('mouseover');
+        }
+        function m2() {
+            window.document.body.bgColor = 'white';
+            message('mouseout');
+        }
+        function m3() {
+            window.document.body.bgColor = 'tomato';
+            message('mousedown');
+        }
+        // 이벤트 함수(= 콜백 함수, Callback Function)
+        function m3_1() {
+            // 어떤 버튼? 이벤트 함수
+            /* 
+                1: 왼쪽
+                2: 오른쪽
+                4: 휠
+            */
+            // message(event.buttons);
+            // if(event.buttons == 2){
+            //     alert('오른쪽 버튼 클릭 금지!!');
+            // }
+            /* 
+                마우스 커서 좌표
+                1. x, y
+                    - 문서 좌측 상단을 기준
+                    - 비표준(MS) > 비권장
+                2. clientX, clientY(*****)
+                    - 문서 좌측 상단을 기준
+                    - 표준 > 권장
+                3. screenX, screenY
+                    - 모니터 좌측 상단을 기준
+                    - 어려움
+                4. offsetX, offsetY
+                    - 이벤트 발생 객체의 좌측 상단을 기준
+                    
+
+            */
+            // message(event.x + ', ' + event.y);
+            // message(event.clientX + ', ' + evnent.clientY);
+            // message(event.screenX + ', ' + event.screenY);
+            // message(event.offsetX + ', ' + event.offsetY);
+        }
+        function m4() {
+            window.document.body.bgColor = 'cornflowerblue';
+            message('mouseup');
+        }
+        function m5() {
+            message('mousemove');
+        }
+        function m6() {
+            // 위(음수) 아래(양수)
+            message('mousewheel > ' + event.deltaY);
+            if(event.deltaY >0){
+                window.document.form1.txt10.size++;
+            } else {
+                window.document.form1.txt10.size--;
+            }
+        }
+
+        //클릭 이벤트 > 마우스 이벤트(X)
+        btn1.onclick = m7;
+
+        function m7() {
+            alert('클릭');
+            // 마우스 정보? event.buttons, event.clientY (X)
+        }
+
+        
+        
+        function message(txt){
+            txt1.value = new Date().toLocaleTimeString() + ' >' +txt + '\n' +txt1.value;
+        }
+        
+
+
+    </script>
+</body>
+</html>

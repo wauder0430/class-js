@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        form > text {
+            display:block;
+        }
+    </style>
+</head>
+<body>
+    <!-- question01.html -->
+    <h1>데이터 입력</h1>
+    <form name="form1">
+        <div>이름 : 
+        <input type="text" name="txt1"></div>
+        <div>나이 : 
+        <input type="text" name="txt2"></div>
+        <div>별명 :
+        <input type="text" name="txt3"></div>
+        <button name="btn1" type="button">Long</button>&nbsp
+        <button name="btn2" type="button">Short</button>
+    </form>
+
+    <script>
+        var btn1 = window.document.form1.btn1;
+        var btn2 = window.document.form1.btn2;
+        var txt1 = window.document.form1.txt1;
+        var txt2 = window.document.form1.txt2;
+        var txt3 = window.document.form1.txt3;
+
+        btn1.onclick = m1;
+        btn2.onclick = m2;
+
+        function m1() {
+            txt1.size = txt1.size*2;
+            txt2.size = txt2.size*2;
+            txt3.size = txt3.size*2;
+        }
+
+        function m2() {
+            txt1.size = txt1.size/2;
+            txt2.size = txt2.size/2;
+            txt3.size = txt3.size/2;
+        }
+    </script>
+</body>
+</html>
