@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        
+    </style>
+</head>
+<body>
+    <!-- ex18_location.html -->
+    <h1>location</h1>
+    <form action="" name="form1">
+        <input type="text" name="txt1">
+        <hr>
+        <input type="button" value="버튼1" name="btn1">
+    </form>
+
+    <script>
+        
+        var txt1 = window.document.form1.txt1;
+        var btn1 = window.document.form1.btn1;
+
+        btn1.onclick = m1;
+        function m1() {
+            // location 객체
+            // - window 객체의 자식
+            // - 현재 창의 페이지 주소(URL)을 참조 객체 > URL 조작
+
+            //console.log(location.href);
+
+            // HTML > 페이지 이동 도구 > <a>
+            // 자바스크립트 > 페이지 이동 도구
+            // location.href = 'ex17_screen.html';
+            // location.href = txt1.value;
+            
+            // window.location.reload(); // 새로고침
+            // window.location.assign('https://naver.com');
+
+            // 커뮤니티
+            // 1. 자유게시판[F]
+            // 2. 질문게시판[Q]
+            // 3. 코드게시판[C]
+
+            // 전역 이벤트
+            // - 특정 태그가 아닌 > 화면 전체 > 발생하는 이벤트
+            // - window 객체에 이벤트 추가
+            
+
+        }
+
+        // window.onclick = m2;
+        //     function m2() {
+        //         alert();
+        // }
+
+        window.onkeydown = m3;
+        function m3() {
+            // F, Q, C
+            if(event.keyCode == 70){
+                window.location.href = 'https://naver.com';
+            } else if(event.keyCode == 81){
+                window.location.href = 'http://google.com';
+            } else if(event.keyCode == 67){
+                window.location.href = 'http://coupang.com';
+            }
+        }
+
+    </script>
+</body>
+</html>

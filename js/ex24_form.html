@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #tbl {
+            border: 1px solid #999;
+            border-collapse:collapse;
+            margin-bottom: 10px;
+        }
+        #tbl1 th, #tbl1 td {
+            border: 1px solid #999;
+            padding: 5px 10px;
+        }
+        #tbl1 th {
+            background-color: #EEE;
+        }
+
+        #tbl1 input {
+            outline: none;
+        }
+        
+    </style>
+</head>
+<body>
+    <!-- ex24_form.html -->
+    <h1>회원 가입 <small>유효성 검사</small></h1>
+
+    <form action="ex24_ok.jsp" name="form1" method="POST">
+        <table id="tbl1">
+            <tr>
+                <th>이름</th>
+                <td><input type="text"  value= "홍길동" name="txtName"></td>
+            </tr>
+            <tr>
+                <th>나이</th>
+                <td><input type="number"  value = "10" name="txtAge" min="0" max="120"></td>
+            </tr>
+            <tr>
+                <th>아이디</th>
+                <td><input type="text" name="txtID" value="hong"></td>
+            </tr>
+            <tr>
+                <th>비밀번호</th>
+                <td><input type="password" name="txtPwd"></td>
+            </tr>
+            <tr>
+                <th>비밀번호 확인</th>
+                <td><input type="password" name="txtPwdc"></td>
+            </tr>
+
+        </table>
+        <div>
+            <input type="submit" value="가입하기" name="btnRegister">
+
+            <!-- <input type="button" value="클릭" name="btn1"> -->
+        </div>
+    </form>
+    
+    <script>
+        var form1 = document.form1;
+        var txtName = form1.txtName;
+        var txtAge = form1.txtAge;
+        var txtID = form1.txtID;
+        var txtPwd = form1.txtPwd;
+        var txtPwdc = form1.txtPwdc;
+        var btnRegister = form1.btnRegister;
+
+        // btnRegister.onclick = m1;
+        // function m1() {
+        //     // alert();
+        //     // 유효성 검사 > 잘못된 것을 찾기
+        //     var name = '홍' // 2~5자 이내
+
+        //     if(name.length < 2 || name.length > 5) {
+        //         alert('이름 유효하지 않음');
+        //         // 전송막기
+        //     }
+        // }
+
+        // 폼이 전송되기 직전에 발생
+        // - 이벤트 함수가 return false; > 이벤트 취소!
+        //form1.onsubmit = m2;
+        form1.onsubmit = m4;
+
+        function m2() {
+            //alert();
+            var name = '홍' // 2~5자 이내
+
+            if(name.length < 2 || name.length > 5) {
+                alert('이름 유효하지 않음');
+                // 전송막기
+                return false;
+            }
+        }
+        
+
+        // txtName.onkeydown = m3;
+        // function m3() {
+        //     event.preventDefault(); // 표준
+        //     return false; // 비표준
+        // }
+
+        function m4() {
+            // 이름
+            // - 필수값
+            // - 2~5자 이내
+            // 한글만
+            
+            /* 전통적인 방법
+            if(txtName.value.trim() == ''){
+                alert('이름 필수!!');
+                txtName.focus();
+                return false; 
+            }
+
+            if(txtName.value.trim().length < 2 || txtName.value.trim().length >5){
+                alert('이름은 2~5자 이내');
+                // txtName.value = '';
+                // txtName.focus();
+                txtName.select(); // 범위선택
+                return false;
+            }
+            
+            for(var i=0; i<txtName.value.trim().length++; i++){
+                var c = txtName.value.trim().charAt(i);
+                if(c<'가' || c > '힣'){
+                    alert('이름은 한글로');
+                    txtName.select();
+                    return false;   
+                }
+            }
+            */
+
+            // 정규 표현식
+            var regex = /^[가-힣]{2,5}$/; //정규식 객체; ^startsWith $endsWith
+
+            if(!(regex.test(txtName.value.trim()))){
+                alert('올바르지 않은 이름');
+                txtName.select();
+                return false;
+            }
+
+            // 나이
+            // 1. 필수값
+            // 2. 숫자만
+            // 3. 범위(0~120)
+            if(txtAge.value.trim() == ''){
+                alert('나이 필수!');
+                txtAge.focus();
+                return false;
+            }
+
+            // 아이디 > 정규식
+            // 1. 필수값
+            // 2. 4~12자 이내
+            // 3. 영어 + 숫자 + _
+            // 4. 숫자로 시작 X
+            regex = /^[A-Za-z_][A-Za-z0-9_]{3,11}$/;
+
+            if(!regex.test(txtID.value.trim())) {
+                alert('올바르지 않은 아이디');
+                txtID.select();
+                return false;
+            }
+
+            // 암호
+            // 1. 필수값
+            // 2. 길이 4~12자 이내
+            // 3. 암호확인
+
+            if(txtPwd.value.trim() ==''){
+                txtPwd.focus();
+                return false;
+            }
+            if(txtPwdc.value.trim() ==''){
+                txtPwdc.focus();
+                return false;
+            }
+
+            if(txtPwd.value.trim().length <4 || txtPwd.value.trim().length>12){
+                alert('암호 길이 제한');
+                txtPwd.value='';
+                txtPwdc.value='';
+                txtPwd.focus();
+                return false;
+            }
+            if(txtPwd.value != txtPwdc.value){
+                alert('암호 불일치');
+                txtPwd.value ='';
+                txtPwdc.value ='';
+                txtPwd.focus();
+                return false;
+            }
+
+            // 이곳에 도착
+            // > 폼 전송~
+            
+            // 프로젝트 
+
+        }
+
+
+    </script>
+</body>
+</html>

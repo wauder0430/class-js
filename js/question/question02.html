@@ -9,7 +9,7 @@
         #hide-txt {
             border: 0px solid black;
             color:red;
-            visibility: hidden;
+            background-color: white;
         }
     </style>
 </head>
@@ -19,8 +19,8 @@
     
     <form name="form1">
         <div>아이디 : 
-            <input type="text" name="txt1"><br>
-            <input id="hide-txt" type="text" name="txt2" value="아이디가 너무 짧습니다.">
+            <input type="text" name="txt1" autocomplete="off"><br>
+            <input id="hide-txt" type="text" name="txt2" disabled value="">
         </div>
     </form>
 
@@ -31,18 +31,15 @@
         txt1.onkeyup = m1;
 
         function m1(){
-            if(txt1.value.length>=1){
-                txt2.style.visibility='visible';
-            } else {
-                txt2.style.visibility='hidden';
-            }
-            if(txt1.value.length<=3){
+            if(txt1.value.length<=0) {
+                txt2.value='';
+            } else if(txt1.value.length<=3){
                 txt2.value='아이디가 너무 짧습니다.';
             } else if(txt1.value.length>=13){
                 txt2.value='아이디가 너무 깁니다.';
             } else {
                 txt2.value='아이디가 적합합니다.'
-            }
+            } 
         }
         
     </script>
