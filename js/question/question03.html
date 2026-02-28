@@ -10,10 +10,45 @@
 </head>
 <body>
     <!-- question03.html -->
-    <h1></h1>
-    
+    <h1>고양이</h1>
+    <div>
+        <img src="../images/catty01.png" alt="" name="cat" data-cat="1">
+        <img src="../images/catty02.png" alt="" name="cat" data-cat="2">
+        <img src="../images/catty03.png" alt="" name="cat" data-cat="3">
+        <img src="../images/catty04.png" alt="" name="cat" data-cat="4">
+        <img src="../images/catty05.png" alt="" name="cat" data-cat="5">
+    </div>
+
     <script>
+        var initSize = document.all['cat'][0].naturalWidth;
+        for(var i=0; i<document.all['cat'].length; i++){
+            document.all['cat'][i].onmouseover=m1;
+            document.all['cat'][i].onclick=m2;
+        }
+        function m1() {
+            event.target.width = event.target.width + 10;
+        }
+        function m2() {
+            event.target.width = initSize;
+        }
+
+        // 키보드 이용
+        document.onkeydown = m3;
+        function m3() {
+            //alert(event.keyCode);
+            var key = event.key;
+            for(var i=0; i<document.all['cat'].length; i++){
+                if(document.all['cat'][i].dataset['cat']==key){
+                    document.all['cat'][i].width += 10;
+                } else if(event.keyCode==27){
+                    document.all['cat'][i].width = initSize;
+                }
+            }
+        }
+
         
+
+
     </script>
 </body>
 </html>
