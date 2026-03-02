@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        
+    </style>
+</head>
+<body>
+    <!-- question09.html -->
+    <h1>주문하기</h1>
+    <div name="order">
+        <fieldset>
+            <legend>주문하시는 분</legend>
+            이름 : <input type="text" name="txt1"><br><br>
+            주소 : <input type="text" name="txt2">
+        </fieldset>
+        <label>
+            <input type="checkbox" name="cb">
+            <span> 주문하시는 분과 정보가 동일합니다.</span>
+        </label>
+        <fieldset>
+            <legend>받으시는 분</legend>
+            이름 : <input type="text" name="txt3"><br><br>
+            주소 : <input type="text" name="txt4">
+        </fieldset>
+    </div>
+    <script>
+        var cb = document.all['cb'];
+        cb.onchange = m1;
+        function m1() {
+            if(cb.checked){
+                document.all['txt3'].value = document.all['txt1'].value;
+                document.all['txt4'].value = document.all['txt2'].value;
+            } else {
+                document.all['txt3'].value = '';
+                document.all['txt4'].value = '';
+            }
+        }
+        
+    </script>
+</body>
+</html>

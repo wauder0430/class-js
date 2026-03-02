@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        
+    </style>
+</head>
+<body>
+    <!-- question04.html -->
+    <div>
+        <img src="../images/cat01.jpg" alt="" name="cat" data-cat="1">
+        <img src="../images/cat02.jpg" alt="" name="cat" data-cat="2">
+        <img src="../images/cat03.jpg" alt="" name="cat" data-cat="3">
+        <img src="../images/cat04.jpg" alt="" name="cat" data-cat="4">
+        <img src="../images/cat05.jpg" alt="" name="cat" data-cat="5">
+    </div>
+    
+    <script>
+        for(var i=0; i<document.all['cat'].length; i++){
+            document.all['cat'][i].onmouseover = m1;
+            document.all['cat'][i].onmouseout = m2;
+        }
+        function m1() {
+            event.target.src = "../images/dog0" + event.target.dataset['cat'] + '.jpg';
+        }
+        function m2() {
+            event.target.src = "../images/cat0" + event.target.dataset['cat'] + '.jpg';
+        }
+        
+    </script>
+</body>
+</html>

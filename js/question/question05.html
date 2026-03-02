@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .div1 {
+            border: 1px solid black;
+            float:left;
+            width: 200px;
+            height :200px;
+
+        }
+        .div1> ul{
+           padding: 10% ;
+           margin:0;
+           display: flex;
+           flex-direction: column;
+           justify-content: center;
+           gap: 5px;
+        }
+        .div1>ul li{
+            border: 1px solid black;
+            display: block;
+            margin-bottom: 5px;
+            width: 90%;
+            margin-left: auto;
+            margin-right: auto;
+            background-color: #DDD;
+            text-align: center;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .div2 {
+            border: 1px solid black;
+            float:left;
+            width: 600px;
+            height :200px;
+
+        }
+        .div2::after{
+            clear:both;
+        }
+        .div2 img{
+            display: block;
+            margin:5px auto;
+        }
+        
+    </style>
+</head>
+<body>
+    <!-- question05.html -->
+    <div>
+        <div class="div1">
+            <ul name="doglist">
+                <li name="list" data-num="01">강아지1</li>
+                <li name="list" data-num="02">강아지2</li>
+                <li name="list" data-num="03">강아지3</li>
+                <li name="list" data-num="04">강아지4</li>
+                <li name="list" data-num="05">강아지5</li>
+            </ul>
+        </div>
+        <div class="div2">
+            <img src="../images/dog01.jpg" name='image1'>
+        </div>
+    </div>
+    
+    <script>
+        var list = document.getElementsByTagName("li");
+        for(var i=0; i<list.length; i++){
+            list[i].onmouseover = m1;
+        }
+        function m1() {
+            document.all['image1'].src = "../images/dog" + event.target.dataset['num'] + '.jpg';
+        }
+        
+    </script>
+</body>
+</html>

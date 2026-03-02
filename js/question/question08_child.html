@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        input {
+            display: block;
+            margin: 5px;
+        }
+        
+    </style>
+</head>
+<body>
+    <!-- question08_child.html -->
+    <input type="button" name="btn" value="서울시 강남구 역삼동" data-btn="06232">
+    <input type="button" name="btn" value="서울시 강남구 대치동" data-btn="06291">
+    <input type="button" name="btn" value="서울시 강남구 도곡동" data-btn="06267">
+    
+    <script>
+        var parent = opener.document;
+    
+        for(var i=0; i<document.all['btn'].length; i++){
+            document.all['btn'][i].onclick = m1;
+        }
+        function m1() {
+            parent.form1.select.value = event.target.dataset['btn']
+            parent.form1.addr1.value = event.target.value;
+            parent.form1.addr2.focus();
+            window.close();
+        }
+        
+    </script>
+</body>
+</html>

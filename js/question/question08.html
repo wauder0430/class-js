@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h1 {
+            color:#777;
+        }
+        .wrap {
+            border: 1px solid #ccc;
+            padding: 0px;
+            width: 800px;
+            
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+        th {
+            background-color: #e9e9e9;
+            width: 150px;
+            text-align: center;
+        }
+        td input[type="text"] {
+            width: 95%;
+        }
+        #select {
+            width: 80px;
+            
+        }
+    </style>
+</head>
+<body>
+    <!-- question08.html -->
+    <h1>우편 번호 검색</h1>
+    <div class="wrap">
+        <form name="form1">
+            <form name="form1">
+                <table>
+                    <tr>
+                        <th>우편번호</th>
+                        <td>
+                            <input type="text" id="select" name="select" readonly>
+                            <input type="button" name="btn1" value="우편번호검사하기">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>주소</th>
+                        <td><input type="text" name="addr1" readonly></td>
+                    </tr>
+                    <tr>
+                        <th>상세주소</th>
+                        <td><input type="text" name="addr2"></td>
+                    </tr>
+                </table>
+        </form>
+    </div>
+    <script>
+        var btn1 = document.form1.btn1;
+        var child = null;
+        btn1.onclick = m1;
+        function m1() {
+            child = window.open('question08_child.html', 'child', 'width=300, height=200');
+        }
+        
+
+
+    </script>
+</body>
+</html>

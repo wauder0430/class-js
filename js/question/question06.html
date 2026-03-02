@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            border: 1px solid #333;
+            width:600px;
+            text-align: center;
+        }
+        
+    </style>
+</head>
+<body>
+    <!-- question06.html -->
+    <div>
+        <img src="../images/img01.jpg" name="image" data-num="1">
+        <img src="../images/img02.jpg" name="image" data-num="2">
+        <img src="../images/img03.jpg" name="image" data-num="3">
+    </div>
+    
+    <script>
+        for(var i=0; i<document.all['image'].length; i++){
+            document.all['image'][i].onmouseover = m1;
+            document.all['image'][i].onmouseout = m2;
+        }
+        function m1() {
+            event.target.src = "../images/img0" + (parseInt(event.target.dataset['num']) + 3) + ".jpg";
+        }
+        function m2() {
+            event.target.src = "../images/img0" + event.target.dataset['num'] + ".jpg";
+        }
+        
+    </script>
+</body>
+</html>
