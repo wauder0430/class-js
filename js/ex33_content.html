@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        fieldset { width: 200px; }
+        fieldset > label { display: block; margin-bottom: 10px; }
+
+        #tbl1 {
+            border: 1px solid gray;
+            border-collapse: collapse;
+            margin-top: 20px;
+            margin-left: 5px;
+        }
+        #tbl1 td {
+            border: 1px solid gray;
+            padding: 5px 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- ex33_content.html -->
+    <h1>테이블 생성하기</h1>
+    
+    <fieldset>
+        <legend>행X열</legend>
+        <label>행: <input type="number" min="1" max="100" id="row" value="1"></label>
+        <label>열: <input type="number" min="1" max="100" id="col" value="1"></label>
+        <input type="button" value="생성하기" id="btn1">
+        <input type="button" value="삭제하기" id="btn2">
+    </fieldset>
+
+    <table id="tbl1"></table>
+
+    <script>
+        document.getElementById('btn1').onclick = function() {
+            var row = document.getElementById('row').value;
+            var col = document.getElementById('col').value;
+            var tbl1 = document.getElementById('tbl1');
+            var temp = ""; // 누적 변수
+            
+            for(var i=0; i<row; i++){
+                temp += "<tr>"
+                for(var j=0; j<col; j++){
+                    temp += "<td>";
+                    temp += (i + ', '+ j);
+                    temp += "</td>";
+                }
+                temp += "</tr>"
+            }
+
+            tbl1.innerHTML = temp;
+
+        };
+        document.getElementById('btn2').onclick = function() {
+            var tbl1 = document.getElementById('tbl1');
+            tbl1.innerHTML = "";
+        }
+        
+    </script>
+</body>
+</html>

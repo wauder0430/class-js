@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            border: 1px solid black;
+            padding: 10px;
+            margin: 10px;
+        }
+
+        #me {
+            border: 10px solid dodgerblue;
+        }
+
+        .check {
+            outline: 10px solid orange;
+        }
+    </style>
+</head>
+<body>
+    <!-- ex37_axis.html -->
+    <h1></h1>
+    <input type="button" value="버튼" id="btn1">
+    <hr>
+
+    <div>
+        할아버지
+        <div>
+            큰아버지
+            <div>사촌</div>
+        </div>
+        <div>
+            아버지
+            <div>
+                큰형
+                <div>조카</div>
+            </div>
+            <div>작은형</div>
+            <div id="me">
+                <!-- 중심 -->
+                나
+                <div>자식</div>
+                <div>
+                    자식
+                    <div>손자</div>
+                </div>
+                <div>자식</div>
+            </div>
+            <div>
+                동생
+                <div>조카</div>
+            </div>
+            <div>막내동생</div>
+        </div>
+        <div>
+            작은아버지
+            <div>사촌</div>
+        </div>
+    </div>
+
+    <script>
+        // document.getElementById('btn1').onclick = m1;
+        // document.getElementById('btn1').onclick = m2;
+        // document.getElementById('btn1').onclick = m3;
+        document.getElementById('btn1').onclick = m4;
+        var me = document.getElementById('me');
+
+        function m4(){
+            // 형제
+            // me.parentElement.firstElementChild.className = 'check';
+
+            // - me.previousSibling > 바로 위의 형제
+            // - me.nextSibling > 바로 밑의 형제
+
+            // - me.previousElementSibling
+            // - me.nextElementSibling 
+
+            me.previousElementSibling.previousElementSibling.className = 'check'; // 큰형
+            me.previousElementSibling.className = 'check'; // 작은형
+            me.nextElementSibling.className = 'check'; //동생
+            me.nextElementSibling.nextElementSibling.className = 'check'; //막내동생
+
+        }
+
+        function m3() {
+            // 부모 == 직계 조상
+            // - me.parentNode
+            // - me.parentElement
+
+            // me.parentNode.className = 'check';
+            // me.parentElement.className = 'check';
+
+            // alert(me.parentNode.parentNode.parentNode.parentNode.nodeName);
+            // alert(me.parentNode.parentNode.parentNode.parentNode.parentNode === window.document);// true
+
+            // BOM: documentd의 부모 > window 객체
+            // DOM: documentd의 부모 > 없음
+            alert(me.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode === null); // true
+        }
+
+        function m2(){
+            // 자식
+            // - me.childNodes  > 모든 자식 노드들
+            // - me.children    > 모든 자식 태그들(***)
+
+            // alert(me.children.length);
+            // for(var i=0; i<me.children.length; i++){
+            //     me.children[i].className = 'check';
+            // }
+
+            // me.childNodes[0]     > me.firstChild
+            // me.children[0]       > me.firstElementChild
+            
+            // me.childNodes[0]     > me.firstChild
+            // me.children[0]       > me.firstElementChild
+
+            //me.lastElementChild.className = 'check';
+
+            me.chilren[1].children[0].className = 'check';
+
+            // *** me.children
+            // me.firstElementChild.className = 'check';
+            
+            
+        }
+        
+
+
+        function m1() {
+            // me > 검색 > 
+
+            // <div class="check">
+            // me.class = 'check'; >> 예외 예약어
+            // me.title = '나';
+            // me.className = 'check';
+            
+            // (친)자식 탐색
+            // -me.childNodes
+            // alert(me.childNodes.length); //9
+
+            for(var i=0; i<me.childNodes.length; i++){
+                // console.log(me.childNodes[i]);
+                /* 
+                    DOM 노드 타입***
+                    - 태그(1)
+                    - 속성(2)
+                    - PCDATA(3)
+                    -----------
+                    - 주석(8)
+                    - 선언문(13)
+                    ...
+
+                    DOM 노드 프로퍼티
+                    1. nodeType > 어떤 종류
+                    2. nodeName > 노드 이름
+                                    - 태그(태그명-대문자) **
+                                    - 속성(속성명-대문자) **
+                                    - PCDATA(#text)
+                                    - 주석(#comment)
+                    3. nodeValue > 노드 값
+                                    - 태그(null)
+                                    - 속성(속성값)  **
+                                    - PCDATA(문자열)**
+
+                */ 
+                // console.log('nodeType', me.childNodes[i].nodeType);
+                //console.log('nodeName', me.childNodes[i].nodeName);
+                // console.log('nodeValue', me.childNodes[i].nodeValue); 
+
+                if(me.childNodes[i].nodeType == 1){
+                    me.childNodes[i].className = 'check';
+                }
+
+            }
+
+        }
+    </script>
+</body>
+</html>

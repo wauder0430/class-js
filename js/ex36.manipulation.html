@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        
+    </style>
+</head>
+<body>
+    <!-- ex36.manipulation.html -->
+    <h1>DOM 조작</h1>
+    <h1>DOM 조작 <small>콘텐츠, 속성</small></h1>
+    <input type="button" value="버튼1" id="btn1">
+    <input type="button" value="버튼2" id="btn2">
+    <input type="button" value="버튼3" id="btn3">
+    <input type="button" value="버튼4" id="btn4">
+    <input type="button" value="버튼5" id="btn5">
+    <hr>
+    <div id="div1">
+        <input type="text" size="10">
+        <hr>
+        <p align="center">문단입니다.</p>
+    </div>
+    
+    <!-- 
+    <div id="div1">
+        <input type="text" size="10">
+        <hr>
+        <p align="center">문단입니다.</p>
+    </div>
+    -->
+    <script>
+        var div1 = document.getElementById('div1');
+
+        document.getElementById('btn1').addEventListener('click', function(){
+            /* 
+                동적으로 태그를 생성하기 
+
+                1. innerHTML 
+                    - 쉽다.
+                    - 비용 저렴
+                    - 모든 걸 문자열 처리 > 복잡한 조작 힘들다.
+
+                2. 표준 기능
+                    - 복잡하다.
+                    - 비용 고가
+                    - 모든 걸 객체로 처리 > 복잡한 조작 용이하다.
+            */
+
+            // div1.innerHTML = '<input type="text size="10">';
+
+            // 태그 객체 생성하기
+            var input = document.createElement('input'); // <input>
+
+            // 속성 생성하기
+            var type = document.createAttribute('type'); // type=""
+            type.value= 'text'; // type='text'
+            input.setAttributeNode(type); // <input type="text">
+
+            var size = document.createAttribute('size') // size=""
+            size.value = 10; // size="10"
+            input.setAttributeNode(size); // <input type="text" size="10";
+
+            div1.appendChild(input);
+
+            // <hr>
+            var hr = document.createElement('hr'); //<hr>
+
+            div1.appendChild(hr);
+
+            // <p align="center">문단입니다.</p>
+            var p = document.createElement('p'); // <p>
+            
+            p.setAttribute('align', 'center'); // <p align="center"></p>
+            
+            // PCDATA
+            // var txt = document.createTextNode('문단입니다.');
+            // p.appendChild(txt);
+            p.textContent = '문단입니다.';
+            
+            div1.appendChild(p);
+
+        });
+
+        document.getElementById('btn2').addEventListener('click', function() {
+            // <div id="div1">
+            //      <input type="button" value="버튼">
+            // </div>
+
+            // div1.innerHTML = '<input type="button" value="버튼" onclick=m1();>';
+            // div1.innerHTML = '<input type="button" value="버튼" id="btn6">';
+            
+            // document.getElementById('btn6').onclick = function(){
+            //     alert();
+            // };
+            // 위 방법은 쓰지 말것
+            
+            // ***** 가장 표준적이면서 많이 쓰는 방법
+            // <input type="button" value="버튼">
+            var input = document.createElement('input');
+
+            input.setAttribute('type', 'button');
+            input.setAttribute('value', '버튼');
+            
+            input.onclick = function(){
+              alert();  
+            };
+
+            div1.appendChild(input);
+
+
+        });
+
+        document.getElementById('btn3').addEventListener('click', function() {
+            // 태그 삭제하기
+
+            // innerHTML
+            // div1.innerHTML='';
+
+            // <hr>만 삭제 > 일부분 조작 > 고비용
+            
+            var hr = document.querySelector('#div1 >hr');
+
+            //div1.appendChild(hr);
+
+            div1.removeChild(hr);
+
+        });
+
+        // function m1() {
+        //     alert('동적으로 생성된 버튼입니다.');
+        // }
+
+        document.getElementById('btn4').addEventListener('click', function(){
+            // 이미지 X 5개 + 클릭 이벤트
+            for(var i=0; i<5; i++){
+                div1.innerHTML += '<img src="images/catty0' + (i+1) + '.png" onclick="m2();">';
+
+            }
+        });
+
+
+        document.getElementById('btn5').addEventListener('click', function(){
+            // 이미지 X 5개 + 클릭 이벤트
+            for(var i=0; i<5; i++){
+                var img = document.createElement('img');
+
+                img.setAttribute('src', 'images/catty0' + (i+1) + '.png');
+
+                img.onclick = m2;
+                
+                div1.appendChilc(img);
+            }
+        });
+
+        function m2() {
+            // 클릭한 고양이 삭제하기
+            // div1.innerHTML = '<img>';
+
+            div1.removeChild(event.target);
+        }
+
+    </script>
+</body>
+</html>

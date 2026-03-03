@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div { text-align: center;}
+        input {
+            border:0px none white;
+            width: 200px;
+            font-size: 180px;
+            
+        }
+    </style>
+</head>
+<body>
+    <!-- question13.html -->
+    <div>
+        <input type="text" value="10" id="clock">
+    </div>
+    
+    
+    <script>
+        var second = 10;
+        var clock = document.querySelector('#clock');
+        var timer = setInterval(function(){
+            second--;
+            clock.value = second;
+
+            if(second < 1){
+                clearInterval(timer);
+                window.location.href = "https://google.com";
+            }
+        },1000);
+        
+
+        
+    </script>
+</body>
+</html>

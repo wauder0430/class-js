@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #tbl1 {
+            border: 1px solid gray;
+            border-collapse: collapse;
+            width: 630px;
+            height: 630px;
+        }
+        #tbl1 td {
+            border: 1px solid gray;
+            width: 126px; height:126px;
+        }
+        #tbl1 td img {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <!-- ex34_content.html -->
+    <h1>동적 태그 + 이벤트</h1>
+    
+    <table id="tbl1">
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+
+    <script>
+        // td + onmousedown
+        // document.getElementsByTagName('td');
+        // document.querySelectorAll('td');
+
+        var list = document.querySelectorAll('#tbl1 td');
+
+        // *** 자바스크립트의 변수 > 함수 스코프
+        // - i: 전역변수
+
+        // *** 전역 변수의 생명 주기: 현재 페이지를 닫을 때까지
+        for(var i=0; i<list.length; i++){
+            // list[i].textContent = i;
+            list[i].onmousedown = function(){
+
+                // Cannot set properties of undefined
+                // 자바의 NullPointerException
+
+                // 어떤 <td>가 이 함수를 호출했는지
+                // list[i].textContent = '클릭';
+                // event.target.textContent = '클릭';
+                // console.log(i);
+                if(event.buttons == 1){
+                    event.target.innerHTML = '<img src="images/rect_icon01.png">';
+                } else if(event.button == 2){
+                    event.target.innerHTML = '<img src="images/rect_icon02.png">';
+                }
+
+                // 상황에 맞는 메뉴 > Context Menu
+                document.getElementById('tbl1').oncontextmenu = function() {
+                    return false;
+                };
+            };
+        }// for
+        
+        // console.log(i);
+    </script>
+</body>
+</html>
