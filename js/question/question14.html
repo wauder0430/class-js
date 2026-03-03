@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            padding: 20px;
+            font-family: sans-serif;
+        }
+
+        .container {
+            border: 1px solid #ccc;
+            padding: 20px;
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #999;
+            font-size: 16px;
+            line-height: 1.6;
+            resize: vertical;
+        }
+
+        .top-textarea {
+            height: 300px;
+        }
+
+        .bottom-textarea {
+            height: 250px;
+            color: #333;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        input[type=button] {
+            padding: 8px 16px;
+            font-size: 16px;
+            border: 1px solid #999;
+            background-color: #f5f5f5;
+            cursor: pointer;
+        }
+
+        input[type=button]:hover {
+            background-color: #e5e5e5;
+        }
+    </style>
+</head>
+<body>
+    <!-- question14.html -->
+    <div class="container">
+        <textarea class="top-textarea"></textarea>
+        
+        <textarea class="bottom-textarea" readonly>네, 낮동안에도 찬바람이 강하게 불고있습니다. 때문에 체감상 느껴지는 온도는 현재기온보다 2~3도가량 낮게 나타나고 있는데요. 남부해안지역과 제주도를 중심으로 강풍주의보도 이어지고 있기 때문에 시설물 피해 없도록 주의하셔야겠습니다. 쌀쌀했던 어제보다도 기온이 더 오르지 못하고있습니다. 현재기온 서울 7.3도, 대전 9.3도, 부산 6.8도로 이맘때 평년수준을 밑돌고있고요. 찬바람이 더해지면서 체감상 느껴지는 날씨는 더 쌀쌀합니다. 꽃샘추위는 내일 절정을 보이겠습니다.</textarea>
+
+        <div class="button-group">
+            <input type="button" id="btn1" value="시작"></button>
+            <input type="button" id="btn2" value="정지"></input>
+        </div>
+    </div>
+      
+    
+    <script>
+        var btn1 = document.querySelector('#btn1');
+        var btn2 = document.querySelector('#btn2');
+        var toptext = document.querySelector('.top-textarea');
+        var bottext = document.querySelector('.bottom-textarea');
+        var temp = "";
+        var i = 0;
+        var id = 0;
+
+        btn1.addEventListener('click', function(){
+            clearInterval(id);
+            id = setInterval(f1,30);
+        });
+        
+        btn2.addEventListener('click', function(){
+            clearInterval(id);
+        });
+
+        function f1() {
+            if(i < bottext.value.length){
+                toptext.append(bottext.value[i]);
+                i++;
+            } else {
+                // 모든 글자를 옮겼으면 인터벌 종료
+                clearInterval(id);
+            }
+            
+        }
+
+    </script>
+</body>
+</html>

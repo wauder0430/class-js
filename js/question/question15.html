@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #clock-border {
+            font-size: 200px;
+            text-align: center;
+            border:1px solid gray;  
+            width:80%;
+            margin: 0 auto;
+        }
+        .clock {
+            font-size: 200px;
+            width:220px;
+            border: 0px none white;
+        } 
+        #btn-group {
+            text-align: center;
+            margin-top: 5px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .btn {
+            width:20%;
+            height: 50px;
+            font-size: 1.5rem;
+            margin-left: 2%;
+            margin-right: 2%;
+        }
+    </style>
+</head>
+<body>
+    <!-- question15.html -->
+    <div id="clock-border">
+        <input type="text" id="minute" class="clock" value="00"> :
+        <input type="text" id="second" class="clock" value="00"> :
+        <input type="text" id="csecond" class="clock" value="00">
+    </div>
+    <div id="btn-group">
+        <input type="button" id="btn-start" class="btn" value="시작">
+        <input type="button" id="btn-stop" class="btn" value="정지">
+        <input type="button" id="btn-off" class="btn" value="종료">
+    </div>
+    
+    <script>
+        var minute = document.querySelector('#minute');
+        var second = document.querySelector('#second');
+        var csecond = document.querySelector('#csecond');
+
+        var btnStart = document.querySelector('#btn-start');
+        var btnStop = document.querySelector('#btn-stop');
+        var btnOff = document.querySelector('#btn-off');
+        
+        var m = 0;  // 분
+        var s = 0;  // 초
+        var cs = 0; // cs
+        var i = 0;  // 인터벌용 
+        var id = 0; // 함수
+
+        btnStart.addEventListener('click', function() {
+            clearInterval(id); //두번 눌렀을 때 중복 제거
+            id = setInterval(f1,10);
+        });
+
+        btnStop.addEventListener('click', function() {
+            clearInterval(id);
+        });
+
+        btnOff.addEventListener('click', function() {
+            clearInterval(id);
+            m = 0;
+            s = 0;
+            cs = 0;
+            i = 0;
+            id = 0;
+
+            minute.value = "00";
+            second.value = "00";
+            csecond.value = "00";
+        });
+
+        // 실질적으로 작동하는 시계
+        function f1() {
+            
+            cs = i;
+            i++;
+            if(cs<10){
+                csecond.value = ('0'+cs);    
+            } else {
+                csecond.value = cs;
+            }
+            // 후에 분리 필요
+            // 출력 형식(Padding) if(s<10)처럼 조건문을 매번 쓰는 대신, 숫자를 두 자리 문자열로 바꿔주는 전용 함수를 만들면 코드가 간결해짐
+            if(i>99){
+                i = 0;
+                s++;
+                if(s<10){
+                    second.value = ('0'+s);
+                } else {
+                    second.value = s;
+                }
+                if(s>59){
+                    s = 0;
+                    second.value = '0'+s;
+                    m++;
+                    if(m<10){
+                        minute.value = ('0'+m);
+                    } else{
+                        minute.value = m;
+                    }
+                }
+            } 
+            
+        }
+
+        
+    </script>
+</body>
+</html>
