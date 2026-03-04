@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        
+        
+        #clock-border {
+            font-size: 200px;
+            text-align: center;
+            
+            width:1372px;
+            height:350px;
+            margin: 0 auto;
+            display:block;
+        }
+        
+        #min-group {
+            /* border: 1px solid black; */
+            width:420px;
+            display:block;
+            float: left;
+        }
+        #sec-group {
+            width:420px;
+            display:block;
+            float: left;
+        }
+        #csc-group {
+            width:420px;
+            display:block;
+            float: left;
+        }
+        
+    
+        .clock1 {
+            /* border: 1px solid black; */
+            width:200px;
+            margin: 0px;
+            float: left;
+        } 
+        .clock2 {
+            /* border: 1px solid black; */
+            width:200px;
+            margin: 0px;
+            float:left;
+        } 
+        .clock2::after {
+            clear:both;
+        }
+        span {
+            float:left;
+        }
+        
+        #btn-group {
+            text-align: center;
+            margin-top: 5px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .btn {
+            width:20%;
+            height: 50px;
+            font-size: 1.5rem;
+            margin-left: 2%;
+            margin-right: 2%;
+        }
+        
+    </style>
+</head>
+<body>
+    <!-- question16.html -->
+    <div id="clock-border">
+        <div id="min-group">
+            <img src="../images/0.png" id="minute1" class="clock1">
+            <img src="../images/0.png" id="minute2" class="clock2">
+        </div> <span>:</span>
+        <div id="sec-group">
+            <img src="../images/0.png" id="second1" class="clock1">
+            <img src="../images/0.png" id="second2" class="clock2">
+        </div> <span>:</span>
+        <div id="csc-group">
+            <img src="../images/0.png" id="csecond1" class="clock1">
+            <img src="../images/0.png" id="csecond2" class="clock2">
+        </div>
+    </div>
+    <div id="btn-group">
+        <input type="button" id="btn-start" class="btn" value="시작">
+        <input type="button" id="btn-stop" class="btn" value="정지">
+        <input type="button" id="btn-off" class="btn" value="종료">
+    </div>
+    <script>
+        var minute1 = document.querySelector('#minute1');
+        var minute2 = document.querySelector('#minute2');
+        var second1 = document.querySelector('#second1');
+        var second2 = document.querySelector('#second2');
+        var csecond1 = document.querySelector('#csecond1');
+        var csecond2 = document.querySelector('#csecond2');
+
+        var btnStart = document.querySelector('#btn-start');
+        var btnStop = document.querySelector('#btn-stop');
+        var btnOff = document.querySelector('#btn-off');
+        
+        var m = 0;  // 분
+        var s = 0;  // 초
+        var cs = 0; // cs
+        var i = 0;  // 인터벌용 
+        var id = 0; // 함수
+
+        btnStart.addEventListener('click', function() {
+            clearInterval(id); //두번 눌렀을 때 중복 제거
+            id = setInterval(f1,10);
+        });
+
+        btnStop.addEventListener('click', function() {
+            clearInterval(id);
+        });
+
+        btnOff.addEventListener('click', function() {
+            clearInterval(id);
+            m = 0;
+            s = 0;
+            cs = 0;
+            id = 0;
+
+            render();
+        });
+
+        // 실질적으로 작동하는 시계
+        function f1() {
+            
+            cs++;
+            
+            if(cs > 99){
+                cs = 0;
+                s++;
+            } 
+            
+            if(s>59){
+                s = 0;
+                m++;
+            }
+            render();
+            
+        }
+
+        // 1의 자리 출력
+        function formatNumber(num) {
+            return num < 10 ? '0' + num : num
+        }
+
+        // 화면 출력
+        function render() {
+            minute.value = formatNumber(m);
+            second.value = formatNumber(s);
+            csecond.value = formatNumber(cs);
+        }
+    </script>
+</body>
+</html>

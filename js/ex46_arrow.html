@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        
+    </style>
+</head>
+<body>
+    <!-- ex46_arrow.html -->
+    <h1>Arrow Function</h1>
+    <input type="button" id="btn1">
+    <input type="button" id="btn2">
+    
+    <script>
+        /* 
+            자바스크립트 함수 선언 방법
+            1. 함수 선언문
+                ex) function f1() {}
+            2. 함수 표현식(=리터럴)
+                ex) function () {}
+            3. 화살표 함수
+                - ES6
+                - 자바의 람다
+                ex) () => {}
+            
+            화살표 함수, Arrow Function
+            - 자바의 람다 > 인터페이스를 구현한 익명 클래스의 추상 메서드를 간단하게 표현
+            - 자바스크립트의 화살표 함수 > 익명 함수를 간단하게 표현
+            - C# > 익명 메서드 > 람다식
+            
+        */
+
+        // 1. 함수 선언문
+        function f1() {
+            console.log('f1');
+        };
+        f1();
+
+        // 2. 함수 리터럴(리터럴, 익명함수)
+        const f2 = function() {
+            console.log('f2');
+        };
+        f2();
+
+        // 3. 익명 함수 > 화살표 함수
+        const f3 = () => {
+            console.log('f3');
+        };
+        f3();
+
+        // 구현부가 1줄 > 실행 블록({}) 생성 가능
+        const f4 = () => console.log('f4');
+
+        // 매개변수
+        const f5 = () => console.log('f5');
+        const f6 = (num) => console.log(num);
+        const f7 = num => console.loc(num);
+        const f8 = (a, b) => console.log(a+b);
+
+        // 반환값 
+        const f9 = () => {return 100;};
+        const f10 = () => 100;
+
+        // document.getElementById('btn1').onclick = function(event) {
+        //     alert(event.target.id)
+        // };
+
+        // document.getElementById('btn2').onclick = event => {
+        //     alert(event.target.id);
+        // };
+
+        // setTimeOut(m1, 3000);
+        // setTimeout(function() {}, 3000);
+        // setTimeout(() => {
+
+        // }, 3000);
+
+        document.getElementById('btn1').onclick = function(event){
+            // 이벤트 발생 객체?
+            // alert(event.srcElement.id); // 나
+            // alert(event.target.id); // 나
+            // alert(this.id); // 나
+
+            // alert(document.getElementById('btn1').id); // 3인칭 안씀
+        };
+
+        document.getElementById('btn1').onclick = () => {
+            // alert(event.srcElement.id); // 나
+            // alert(event.target.id); // 나
+            // alert(this.id); // undefined
+
+            // *** 화살표 함수내에서 this는 무조건 window 객체
+        };
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #tbl1 {
+            border: 1px solid gray;
+            border-collapse: collapse;
+        }
+        #tbl1 td {
+            border: 1px solid gray;
+            width: 126px; height:126px;
+        }
+        #tbl1 td img {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <!-- ex50_event.html -->
+    <h1>테이블</h1>
+
+    <table id="tbl1">
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+    
+    <script>
+        
+        document.querySelectorAll('#tbl1 td').forEach(td => {
+            td.onmousedown = function(event) {
+                //alert(event.target.nodeName);
+                let filename = ''
+                if(event.buttons ==1){
+                    filename = 'images/rect_icon01.png';
+                } else if(event.buttons == 2) {
+                    filename = 'images/rect_icon02.png';
+                } else if(event.buttons == 4) {
+                    // 추가된 이미지 > 삭제
+                    // - 부모태그.removeChild(자식태그)
+                    
+                    // td.removeChild(img)
+                    // event.target.removeChild(이미지);
+
+                    // alert(event.target.nodeName); // img
+                    // alert(event.currentTarget.nodeName); // td
+
+                    event.currentTarget.removeChild(event.target);
+                    return;
+                }
+
+                if (event.target.nodeName == 'IMG') {
+                    event.currentTarget.removeChild(event.target);
+                }
+
+                const img = document.createElement('img');
+                img.setAttribute('src', filename);
+                event.currentTarget.appendChild(img);
+            };
+        });
+
+        window.oncontextmenu = function() {
+            event.preventDefault();
+            return false;
+        }
+    </script>
+</body>
+</html>

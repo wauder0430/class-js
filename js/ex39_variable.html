@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        
+    </style>
+</head>
+<body>
+    <!-- ex39_variable.html -->
+    <h1></h1>
+    
+    <script>
+        /* 
+            ES6 이후에 만들어진 문법
+            - 자바스크립트가 언어로서 역할이 부족 > 보충
+
+            변수 선언하기
+
+            1. var
+            - BOM/DOM/ES6
+            - function-scoped
+                - 함수(영역 인식 O)
+                - 제어문(영역 인식 X)
+            - 중복 선언 가능
+            - 상수 선언 불가능(final)
+            
+            2. let
+            - ES6(ECMA 2015)
+            - block-scoped
+                - 함수(영역 인식 O)
+                - 제어문(영역 인식 O)
+            - 변수
+
+            3. const
+            - ES6(ECMA 2015)
+            - block-scoped
+                - 함수(영역 인식 O)
+                - 제어문(영역 인식 O)
+            - 상수(final)
+        */
+        
+        var a = 10; 
+        console.log(a);
+
+        var a = 20; // 중복 선언
+        console.log(a);
+
+        var pi = 3.14; // 상수 > 불가능
+        pi = 6.28;
+
+        let b = 10;
+        console.log(b);
+
+        // Identifier 'b' has already
+        // let  b = 20;
+
+        function m1() {
+            var c = 10; // 지역 변수 (m1)
+            let d = 20; // 지역 변수 (m2)
+        }
+        m1();
+
+        // console.log(c);
+        // console.log(d);
+
+        if(a>0){
+            var e = 10; // 전역 변수
+            let f = 20; // 지역 변수(if)
+        }
+
+        console.log(e);
+        // console.log(f);
+
+        for(var i=0; i<10; i++){
+
+        }
+        console.log(i);
+
+        for(let j=0; j<10; j++){
+
+        }
+        // console.log(j);
+
+        const k = 10;
+        // Uncaught TypeError: Assignment to constant variable.
+        k = 20;
+
+    </script>
+</body>
+</html>

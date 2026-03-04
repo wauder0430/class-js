@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        
+    </style>
+</head>
+<body>
+    <!-- ex42_window.html -->
+    <h1>window</h1>
+    
+    <script>
+        const dog = {
+            name: '멍멍이',
+            age: 3,
+            run: function() {
+                console.log(this.name + ' 달린다.');
+            }
+        };
+
+        // 자바스크립트 배열 실체
+        // - 자바스크립트에는 배열이 없다.
+        // - new Object()
+        const list = [ '사과', '귤', '딸기' ]; 
+
+        /* const list = {
+            0: '사과',
+            1: '귤',
+            2: '딸기',
+            length: 3
+        }; */
+
+        // 제어문 > for문, 향상된 for문
+        for(let i=0; i<list.length; i++){
+            console.log(list[i]);
+        }
+
+        // 향상된 for문(X) > 객체의 프로퍼티를 탐색하는 루프
+        for(let temp in list){
+            console.log(temp);
+        }
+        console.clear();
+        
+        for(let temp in dog){
+            console.log(temp);
+        }
+        console.clear();
+        
+        // console.log(typeof list); //object
+        // ---------------------------------------------------------
+
+        // var a = 10; // 전역 변수 > 자동으로 window 객체의 프로퍼티
+        // var a = 30;
+        // window.a = 10;
+        // window.a = 30;
+        let b = 20;
+
+        // console.log(window.a);
+        
+        // for(let prop in window){
+        //     console.log(prop);
+        // }
+
+        function f1() { // 전역 함수 > window 프로퍼티
+            console.log('f1');
+        }
+
+        // f1();
+        // window.f1(); // 정석
+
+        // window.alert();
+        // window.confirm();
+        // window.setTimeout();
+
+        
+        
+    </script>
+</body>
+</html>
