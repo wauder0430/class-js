@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #heart {
+            background-image: url(images/heart.png);
+            border: 1px solid black;
+            background-repeat: no-repeat;
+            width:300px; height: 300px;
+        }
+        
+        #puma {
+            background-image: url(images/puma.png);
+            border: 1px solid black;
+            background-repeat: no-repeat;
+            /* background-size: contain; */
+            width: 512px; height: 256px;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- ex58_css.html -->
+    <h1>배경 이미지 조작</h1>
+
+    <div id="heart"></div>
+    <hr>
+    <input type="button" id="btn1" value="버튼1">
+    <hr>
+    <div id="puma"></div>
+    <script>
+        const heart = document.getElementById('heart');
+        let x = 0;
+        document.getElementById('btn1').onclick = event => {
+            x -= 300;
+            
+            if(x<-600){
+                x = 0;
+            } 
+
+            heart.style['background-position'] = x + 'px 0px';
+        };
+
+        // 애니메이션을 하려면 canvas를 쓰는게 맞음 
+        // 현재 방식은 복잡해지면 메모리 점유율이 크게 높아짐
+
+        let x2 = 0;
+        let y2 = 0;
+        let runid = 0;
+
+        document.getElementById('puma').onclick = event => {
+            if(runid == 0){
+                runid = setInterval(run, 100);
+            } else {
+                clearInterval(runid);
+                runid = 0;
+            }
+            
+        };
+        
+        function run() {
+            x2 -= 512;
+
+            if(x2 < -(512*3)) {
+                x2 = 0;
+                y2 -= 256;
+
+                if(y2<-256){
+                    y2 = 0;
+                }
+            }
+            document.getElementById('puma').style['background-position'] = `${x2}px ${y2}px`;
+        }
+    </script>
+</body>
+</html>

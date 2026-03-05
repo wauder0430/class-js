@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            border: 1px solid black;
+            width: 150px;
+            height: 150px;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <!-- ex54_css.html -->
+    <h1>상자+CSS</h1>
+    
+    <script>
+
+        // 화면 클릭 > 상자 생성 > 상자를 클릭한 위치로 이동
+        window.onmousedown = event => {
+
+            if(event.buttons == 1){
+
+                const box = document.createElement('div');
+    
+                // box.style['border'] = '1px solid black';
+                // box.style['width'] = '150px';
+                // box.style['height'] = '150px';
+                // box.style['position'] = 'absolute';
+    
+                box.className = 'box';
+                
+                box.style['left'] = event.clientX - 75 + 'px';
+                box.style['top'] = event.clientY - 75 + 'px';
+    
+                let r = parseInt(Math.random() * 256);
+                let g = parseInt(Math.random() * 256);
+                let b = parseInt(Math.random() * 256);
+    
+                box.style['background-color'] = `rgb(${r}, ${g}, ${b})`;
+    
+                document.body.appendChild(box);
+            } else if(event.buttons == 2){
+                
+                // 어떤 상자를 클릭했는지?
+                if(event.target.nodeName == 'DIV' && event.target.classList.contains('box')){
+                    // event.target.parentNode.removeChild(event.target);
+                    event.target.remove();
+                }
+
+            }
+
+        };
+
+        window.oncontextmenu = event => event.preventDefault();
+
+    </script>
+</body>
+</html>

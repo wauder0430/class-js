@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box1 { width: 200px; height: 200px;
+        border: 1px solid black; background-color: gold;}
+    </style>
+</head>
+<body>
+    <!-- ex62_jquery.html -->
+    <h1>jQuery Effect</h1>
+
+    <input type="button" value="버튼1" id="btn1" class="btns">
+    <input type="button" value="버튼2" id="btn2" class="btns">
+    <input type="button" value="버튼3" id="btn3" class="btns"> 
+
+    <hr>
+
+    <div id="box1">상자</div>
+    
+    <script src="https://code.jquery.com/jquery-4.0.0.js"></script>
+    <script>
+
+        // jQuery Effect
+        // - CSS 일부 조작 Set
+        // 1. hide(time), show(time), toggle(time) > diplay 
+        // 2. fadeOut(time), fadeIn(time), fadeToggle(time) > opacity
+        // 3. slideUp(time), slideDown(time), slideToggle(time)
+        // 4. animate() > 사용자 정의형
+
+        $('#btn1').click(() => {
+            // $('#box1').hide(1000);
+            // $('#box1').fadeOut(1000);
+            // $('#box1').slideUp(1000);
+
+            // $('#box1').animate({
+            //     width: '400px',
+            //     height: '400px',
+            //     opacity: 0
+            // });
+
+            // box1.style.width = parseInt(box1.style.width) + 50 + 'px';
+
+            // $('#box1').animate({
+            //     width: '+=50px',
+            //     height: '+=50' 
+            // });
+
+            // $('#box1').animate({
+            //     width: '+=100'
+            // }, 3000, function() {
+            //     // 콜백함수 > 애니메이션이 끝나는 순간 호출
+            //     // alert();
+            //     $('#box1').css('background-color', 'green');
+            // });
+
+            // 콜백 지옥 > 들여쓰기 문제
+            // $('#box1').animate({
+            //     width: '+=100'
+            // }, 3000, function(){
+            //     $('#box1').animate({
+            //         height: '+=100'
+            //     }, 3000, function(){
+            //         $('#box1').animate({
+            //             fontSize: '+=3rem'
+            //             // 'font-size': '+=3rem'
+            //         });
+            //     });
+            // });
+            // >>>
+
+            
+            // $('#box1').animate({
+            //     width: '+=100'
+            // }, 2000);
+            // $('#box1').animate({
+            //     height: '+=100'
+            // }, 2000);
+            // $('#box1').animate({
+            //     fontSize: '+=3rem'
+            // }, 2000);
+
+            // *** 모든 jQuery 관련 함수는 반환값으로 원본 객체를 리턴한다.
+            // $('#box1')
+            //     .animate({
+            //         width: '+=100'
+            //     }, 2000)
+            //     .animate({
+            //         height: '+=100'
+            //     }, 2000)
+            //     .animate({
+            //         fontSize: '+=3rem'
+            //     }, 2000);
+
+            // $('#box1').css('color','blue');
+            // $('#box1').css('background-color', 'green');
+            // >>>
+            // $('#box1')
+            //     .css('color','blue')
+            //     .css('background-color', 'green');
+
+
+            // 메서드 체이닝
+            // $('#box1')
+            //     .slideUp()
+            //     .slideDown()
+            //     .fadeOut()
+            //     .fadeIn()
+            //     .animate({
+            //         width: '+=200'
+            //     })
+            //     .animate({
+            //         width: '-=200'
+            //     });
+
+
+            $('#box1')
+                .mouseover(function() {
+                    $('#box1').css('background-color', 'tomato');
+                })
+                .mouseout(function() {
+                    $('#box1').css('background-color', 'gold');
+                });
+
+            
+        });
+
+        $('#btn2').click(() => {
+            // $('#box1').show(1000);
+            // $('#box1').fadeIn(1000);
+            // $('#box1').slideDown(1000);
+        });
+
+        $('#btn3').click(() => {
+            // $('#box1').toggle(1000);
+            // $('#box1').fadeToggle(1000);
+            // $('#box1').slideToggle(1000);
+
+            // CSS 조작
+            // - obj.css(prop, value): 쓰기
+            // - obj.css(prop)       : 읽기
+
+            // getXXX()
+            // setXXX()
+
+            // alert(document.getElementById('box1').style.width); // null 
+            // alert($('#box1').css('width'));
+            
+            // $('#box1').css('width', '400px');
+            // $('#box1').css('color', 'blue');
+            // $('#box1').css('font-size', '5rem');
+            
+            // $('#box1')
+            //     .css('width', '400px')
+            //     .css('color', 'blue')
+            //     .css('font-size', '5rem');
+
+            // $('#box1').css({
+            //     width: '400px',
+            //     color: 'blue',
+            //     'font-size': '5rem'
+            // });
+
+
+            // $('#box1').mouseover(() => {})
+            //           .mouseout(() => {});
+
+            $('#box1').on({
+                mouseover: () => {},
+                mosueout: () => {}
+            });
+        
+
+
+        });
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body { text-align: center;}
+        #div1 {
+            border: 1px solid black;
+            width: 200px; height: 200px;
+            margin:20px auto;
+        }
+        .one { font-size: 5rem; }
+        .two { color: orange; }
+        .three { text-decoration: line-through;}
+    </style>
+</head>
+<body>
+    <!-- ex51_css.html -->
+    <h1>ex51_css.html</h1>
+    
+    <input type="button" value="버튼1" id="btn1">
+    <input type="button" value="버튼2" id="btn2">
+    <input type="button" value="버튼3" id="btn3">
+    <input type="button" value="버튼4" id="btn4">
+    <input type="button" value="버튼5" id="btn5">
+    <input type="button" value="버튼6" id="btn6">
+    <hr>
+    <div id="div1" style="/*width:200px;*/">상자</div>
+
+    
+
+    <script>
+
+        // JavaScript로 CSS 조작하기
+        const div = document.getElementById('div1');
+
+        document.getElementById('btn1').onclick = function() {
+            // JavaScript로 CSS 조작하기
+            // - 모든 태그 > style 속성 보유
+            // - 자바스크립트 > style 프로퍼티 제공
+            // - CSS 속성명 > 자바스크립트 style 프로퍼티의 하위 프로퍼티로 제공
+            // ex) div1.style.color
+            // ex) div1.style.fontSize > '-' 캐멀 표기법
+
+            // div1.title = '상자';
+            div1.style = 'color:blue; font-size:2rem;'; // < 추가적인 컨트롤을 해야하므로 권장하지 않음
+
+        };
+
+        // 권장
+        document.getElementById('btn2').onclick = function() {
+
+            // div1.style >> 배열 컬렉션 형태로 지원
+            // div1.style.color = 'gold';
+            // div1.style.fontSize = '2rem';
+
+            // div1.style['color'] = 'gold';
+            // div1.style['fontSize'] = '2rem';
+
+            // <div style="">
+            div1.style['color'] = 'gold';
+            div1.style['font-size'] = '3rem';
+
+        };
+
+        document.getElementById('btn3').onclick = function() {
+
+            // <div id="div1" class="one">상자</div>
+            
+            // div1.className = 'one';
+
+            // .one + .two + .three
+            // div1.className = 'one';
+            // div1.className = 'two';
+            // div1.className = 'three';
+            // div1.className = 'one two three'; // 하드코딩
+            // 다중값을 className에 넣는 행동 X
+
+            div1.classList.add('one');
+            div1.classList.add('two');
+            div1.classList.add('three');
+
+        };
+
+        document.getElementById('btn4').onclick = function() {
+            // div1.className = 'one three' // 하드코딩
+            div1.classList.remove('two');
+
+        };
+
+        document.getElementById('btn5').onclick = function() {
+
+            // 현재 상자의 너비 > 버튼 클릭 > +50px;
+
+            // 태그가 가지고 있는 CSS 값 읽어오기 > 200 
+            // alert(div1.style.width);  // null
+            // 인라인 CSS > 자바스크립트가 CSS 조작하는데 있어서 제약
+            // 인라인추가후
+            // alert(parseInt(div1.style.width) + 50);
+
+            // div1.style.width = div1.style.width + 50;
+            div1.style.width = parseInt(div1.style.width) + 50 +'px';
+
+        };
+
+        document.getElementById('btn6').onclick = function() {
+
+            // 인라인 or 임베디드 or 외부 > 모든 적용된 CSS 읽기
+            // const list = window.getComputedStyle(div1); 
+
+            // console.log(list);
+            // alert(list.getPropertyValue('width'));
+
+            // alert(list.getPropertyValue('padding'));
+
+        };
+
+        
+    </script>
+</body>
+</html>
