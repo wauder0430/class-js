@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.14.1/themes/base/jquery-ui.css">
+    <style>
+        #box1 {
+            border: 1px solid black;
+            width: 200px; height: 200px;
+            background-color: gold;
+        }
+        img { outline: 1px solid black; }
+
+        .helper {
+            /* background-color: dodgerblue; */
+            border: 1px dashed #333;
+            background-color: rgba(185, 161, 25, 0.774);
+        }
+    </style>
+</head>
+<body>
+    <!-- ex67_jquery.html -->
+    <h1>Interactions <small>Resizable</small></h1>
+
+    <div id="box1"></div>
+
+    <hr>
+    <img src="images/placeimg_200_400_animals.jpg" id="img1">
+    
+
+    <script src="https://code.jquery.com/jquery-4.0.0.js"></script> 
+    <script src="https://code.jquery.com/ui/1.14.2/jquery-ui.js"></script> 
+    
+    <script>
+        
+        $('#box1').resizable({
+            maxWidth: 500,
+            minWidth: 100,
+            maxHeight: 500,
+            minHeight: 100,
+            //grid: [100, 100]
+            animate: true,
+            helper: 'helper'
+
+        });
+
+        $('#img1').resizable({
+            aspectRatio: true
+        });
+
+    </script>
+</body>
+</html>

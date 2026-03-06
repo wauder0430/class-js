@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box1 {
+            border: 1px solid black;
+            width: 400px; height:400px;
+            background-color: gold;
+        }
+        img { outline: 1px solid black; }
+    </style>
+</head>
+<body>
+    <!-- ex66_jquery.html -->
+    <h1>Interactions <small>Droppable</small></h1>
+
+    <div id="box1"></div>
+
+    <img src="images/catty01.png" id="cat1" class="cats">
+    <img src="images/catty02.png" id="cat2" class="cats">
+    <img src="images/catty03.png" id="cat3" class="cats">
+    
+    <script src="https://code.jquery.com/jquery-4.0.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.14.2/jquery-ui.js"></script>
+    <script>
+        
+        $('.cats').draggable();
+
+        $('#box1').droppable({
+
+            // 이벤트 역할
+            drop: function(event, ui) {
+                //alert();
+
+                $(this).css('background-color', 'orange');
+
+                // 고양이 3마리 > 어떤 고양이가 들어왔는지?
+                // alert(ui.draggable.attr('id'));
+
+                ui.draggable.css('opacity', .5);
+
+                ui.draggable.draggable({
+                    containment: '#box1'
+                });
+            }
+
+        });
+
+        $('.cats').dblclick(() => {
+            $(event.target).css('opacity', 1)
+                           .draggable({
+                                containment: ''
+                           });
+        });
+
+    </script>
+</body>
+</html>
