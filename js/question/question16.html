@@ -14,24 +14,24 @@
             width:1372px;
             height:350px;
             margin: 0 auto;
-            display:block;
+            display: flex;
         }
         
         #min-group {
             /* border: 1px solid black; */
-            width:420px;
+            width:400px;
             display:block;
-            float: left;
+            display: flex;
         }
         #sec-group {
-            width:420px;
+            width:400px;
             display:block;
-            float: left;
+            display: flex;
         }
         #csc-group {
-            width:420px;
+            width:400px;
             display:block;
-            float: left;
+            display: flex;
         }
         
     
@@ -39,20 +39,19 @@
             /* border: 1px solid black; */
             width:200px;
             margin: 0px;
-            float: left;
+            display: flex;
+
         } 
         .clock2 {
             /* border: 1px solid black; */
             width:200px;
             margin: 0px;
-            float:left;
-        } 
-        .clock2::after {
-            clear:both;
-        }
+            display: flex;
+                } 
+        
         span {
-            float:left;
-        }
+            display: flex;
+                }
         
         #btn-group {
             text-align: center;
@@ -106,7 +105,6 @@
         var m = 0;  // 분
         var s = 0;  // 초
         var cs = 0; // cs
-        var i = 0;  // 인터벌용 
         var id = 0; // 함수
 
         btnStart.addEventListener('click', function() {
@@ -147,15 +145,20 @@
         }
 
         // 1의 자리 출력
-        function formatNumber(num) {
-            return num < 10 ? '0' + num : num
+        function updateImage(num, img1, img2) {
+            const ten = Math.floor(num / 10);
+            const one = num % 10;
+
+            img1.src = `../images/${ten}.png`;
+            img2.src = `../images/${one}.png`;
+
         }
 
         // 화면 출력
         function render() {
-            minute.value = formatNumber(m);
-            second.value = formatNumber(s);
-            csecond.value = formatNumber(cs);
+            updateImage(m, minute1, minute2);
+            updateImage(s, second1, second2);
+            updateImage(cs, csecond1, csecond2);
         }
     </script>
 </body>
